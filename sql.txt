@@ -1,0 +1,36 @@
+IPL
+#DB URL : jdbc:mysql://localhost:3306/advjava?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+
+#tables
+
+create table Teams(
+tname varchar(20) unique not null,
+shortname varchar(10) primary key,
+total_players int,
+owner varchar(20) unique not null,
+max_age int check(max_age>19)
+);
+
+create table players(
+pid int  primary key auto_increment,
+pname varchar(20) not null,
+dob date,
+bat_avg double(5,2),
+wpm double(3,2),
+team varchar(10),
+foreign key(team) references teams(shortname)
+);
+
+
+#table data
+
+insert into Teams values("Mumbai Indians","MI",10,"Sharma",37),
+("Chennai Super Kings","CSK",10,"Dhoni",39),
+("Gujrat Titans","GT",10,"Pandya",36),
+("Royl Chlngrs Banglr","RCB",10,"Kohli",38);
+
+
+insert into players values(1,"virat","1986-03-03",70,2,"RCB"),
+(21,"dhoni","1984-03-03",50,3,"CSK"),
+(41,"Pandya","1989-03-03",50,3,"GT"),
+(61,"sharma","1985-03-03",65,2,"MI");
